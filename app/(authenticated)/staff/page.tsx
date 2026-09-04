@@ -28,7 +28,7 @@ export default function StaffDashboard() {
       </div>
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 z-[1] bg-black/50" />
+      <div className="absolute inset-0 z-[1] bg-black/20 dark:bg-black/50" />
 
       {/* Content */}
       <div className="relative z-[2] flex flex-col items-center min-h-dvh px-6 py-8">

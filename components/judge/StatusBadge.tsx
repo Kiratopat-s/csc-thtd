@@ -9,7 +9,7 @@ interface StatusBadgeProps {
 export default function StatusBadge({ submitted }: StatusBadgeProps) {
   if (submitted) {
     return (
-      <span className="inline-flex items-center gap-1.5 text-green-400">
+      <span className="inline-flex items-center gap-1.5 text-green-600 dark:text-green-400">
         <CheckCircle2 className="w-4 h-4" />
         <span className="text-xs font-medium">ส่งแล้ว</span>
       </span>

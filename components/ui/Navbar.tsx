@@ -7,6 +7,7 @@ import { Zap, Menu, X } from "lucide-react";
 import LogoutButton from "@/components/LogoutButton";
 import MobileMenu from "@/components/ui/MobileMenu";
 import TextSizeToggle from "@/components/ui/TextSizeToggle";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import { NAV_LINKS } from "@/lib/nav-links";
 import type { AuthPayload } from "@/lib/auth";
 
@@ -56,6 +57,7 @@ export default function Navbar({ user }: NavbarProps) {
 
             {/* Desktop right side */}
             <div className="hidden md:flex items-center gap-4">
+              <ThemeToggle />
               <TextSizeToggle />
               <span className="text-sm text-text-muted">
                 สวัสดี, {user.username}

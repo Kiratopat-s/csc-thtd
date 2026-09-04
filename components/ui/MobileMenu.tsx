@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import LogoutButton from "@/components/LogoutButton";
 import TextSizeToggle from "@/components/ui/TextSizeToggle";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import type { NavLink } from "@/lib/nav-links";
 import type { AuthPayload } from "@/lib/auth";
 
@@ -61,7 +62,7 @@ export default function MobileMenu({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-40 bg-black/30 dark:bg-black/60 backdrop-blur-sm md:hidden"
           />
 
           {/* Drawer */}
@@ -125,6 +126,8 @@ export default function MobileMenu({
             <div className="px-6 py-4 border-t border-border-subtle">
               <p className="text-xs text-text-muted mb-2">ขนาดตัวอักษร</p>
               <TextSizeToggle />
+              <p className="text-xs text-text-muted mb-2 mt-4">ธีม</p>
+              <ThemeToggle />
             </div>
 
             {/* Logout at bottom */}

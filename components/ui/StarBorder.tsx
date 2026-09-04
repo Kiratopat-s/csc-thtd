@@ -19,13 +19,14 @@ const StarBorder = <T extends React.ElementType = 'button'>({
   color = 'white',
   speed = '6s',
   thickness = 1,
-  backgroundColor = '#000000',
-  textColor = '#ffffff',
-  borderColor = '#222222',
+  backgroundColor,
+  textColor,
+  borderColor,
   children,
   ...rest
 }: StarBorderProps<T>) => {
   const Component = as || 'button';
+  const useInlineStyles = backgroundColor !== undefined || textColor !== undefined || borderColor !== undefined;
 
   return (
     <Component
@@ -51,8 +52,10 @@ const StarBorder = <T extends React.ElementType = 'button'>({
         }}
       ></div>
       <div
-        className="relative z-1 border text-center text-[16px] py-[16px] px-[26px] rounded-[20px]"
-        style={{ background: backgroundColor, color: textColor, borderColor }}
+        className={`relative z-1 border text-center text-[16px] py-[16px] px-[26px] rounded-[20px] ${
+          useInlineStyles ? '' : 'bg-background text-foreground border-border-subtle'
+        }`}
+        style={useInlineStyles ? { background: backgroundColor, color: textColor, borderColor } : undefined}
       >
         {children}
       </div>

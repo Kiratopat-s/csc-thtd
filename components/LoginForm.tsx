@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Zap, Lock, User, Eye, EyeOff, ArrowLeft } from "lucide-react";
+import { useTheme } from "@/lib/theme-context";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Box from "@mui/material/Box";
@@ -20,6 +21,7 @@ const Aurora = dynamic(() => import("@/components/backgrounds/Aurora"), {
 });
 
 export default function LoginForm() {
+  const { mode } = useTheme();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -73,6 +75,7 @@ export default function LoginForm() {
           amplitude={1.0}
           blend={0.5}
           speed={0.6}
+          lightMode={mode === "light"}
         />
       </Box>
 
@@ -82,7 +85,7 @@ export default function LoginForm() {
           position: "absolute",
           inset: 0,
           zIndex: 1,
-          bgcolor: "rgba(0,0,0,0.5)",
+          bgcolor: mode === "dark" ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.3)",
         }}
       />
 
@@ -99,7 +102,7 @@ export default function LoginForm() {
           flexDirection: "column",
           alignItems: "center",
           gap: { xs: 3, sm: 4 },
-          bgcolor: "rgba(26, 26, 26, 0.8)",
+          bgcolor: mode === "dark" ? "rgba(26, 26, 26, 0.8)" : "rgba(255, 255, 255, 0.85)",
           backdropFilter: "blur(20px)",
           border: "1px solid",
           borderColor: "divider",
@@ -135,7 +138,7 @@ export default function LoginForm() {
               input: {
                 startAdornment: (
                   <InputAdornment position="start">
-                    <User style={{ width: 20, height: 20, color: "#a1a1aa" }} />
+                    <User style={{ width: 20, height: 20, color: "var(--text-muted)" }} />
                   </InputAdornment>
                 ),
               },
@@ -154,7 +157,7 @@ export default function LoginForm() {
               input: {
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Lock style={{ width: 20, height: 20, color: "#a1a1aa" }} />
+                    <Lock style={{ width: 20, height: 20, color: "var(--text-muted)" }} />
                   </InputAdornment>
                 ),
                 endAdornment: (
@@ -190,7 +193,7 @@ export default function LoginForm() {
             sx={{
               py: 1.5,
               bgcolor: "primary.main",
-              "&:hover": { bgcolor: "#a78bfa" },
+              "&:hover": { bgcolor: "primary.light" },
               "&.Mui-disabled": { opacity: 0.6 },
             }}
           >
@@ -216,7 +219,7 @@ export default function LoginForm() {
             gap: 1,
             color: "text.secondary",
             fontSize: "0.875rem",
-            "&:hover": { color: "#a78bfa" },
+            "&:hover": { color: "primary.light" },
           }}
         >
           <ArrowLeft style={{ width: 16, height: 16 }} />

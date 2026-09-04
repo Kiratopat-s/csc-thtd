@@ -4,12 +4,15 @@ import dynamic from "next/dynamic";
 import { Zap } from "lucide-react";
 import GradientText from "@/components/text/GradientText";
 import StarBorder from "@/components/ui/StarBorder";
+import { useTheme } from "@/lib/theme-context";
 
 const Aurora = dynamic(() => import("@/components/backgrounds/Aurora"), {
   ssr: false,
 });
 
 export default function Hero() {
+  const { mode } = useTheme();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Aurora Background */}
@@ -19,11 +22,12 @@ export default function Hero() {
           amplitude={1.2}
           blend={0.6}
           speed={0.8}
+          lightMode={mode === "light"}
         />
       </div>
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 z-[1] bg-black/40" />
+      <div className="absolute inset-0 z-[1] bg-black/20 dark:bg-black/40" />
 
       {/* Content */}
       <div className="relative z-[2] flex flex-col items-center gap-8 px-6 text-center">
@@ -45,9 +49,6 @@ export default function Hero() {
           href="/login"
           color="#7c3aed"
           speed="5s"
-          backgroundColor="#0a0a0a"
-          textColor="#ededed"
-          borderColor="#262626"
           className="mt-4"
         >
           เข้าสู่ระบบ

@@ -6,13 +6,17 @@ import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
-import theme from "@/lib/theme";
+import { getTheme } from "@/lib/theme";
+import { useTheme } from "@/lib/theme-context";
 
 export default function ThemeProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { mode } = useTheme();
+  const muiTheme = getTheme(mode);
+
   const [cache] = useState(() => {
     const c = createCache({ key: "mui", prepend: true });
     c.compat = true;
@@ -38,7 +42,7 @@ export default function ThemeProvider({
 
   return (
     <CacheProvider value={cache}>
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={muiTheme}>
         <CssBaseline />
         {children}
       </MuiThemeProvider>

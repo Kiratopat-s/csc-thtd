@@ -60,7 +60,7 @@ export default function EditableName({
         />
         <button
           onClick={save}
-          className="p-1 text-green-400 hover:text-green-300"
+          className="p-1 text-green-600 dark:text-green-400 hover:text-green-500 dark:hover:text-green-300"
         >
           <Check className="w-3.5 h-3.5" />
         </button>

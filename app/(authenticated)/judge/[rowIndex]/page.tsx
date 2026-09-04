@@ -47,7 +47,7 @@ export default async function JudgeDetailPage({
             : "ShieldAlert") as IconName,
           colorClass:
             task.connectionStatus === "แน่น"
-              ? "text-green-400"
+              ? "text-green-600 dark:text-green-400"
               : "text-orange-accent",
         },
       ]
@@ -65,10 +65,10 @@ export default async function JudgeDetailPage({
               : "XCircle") as IconName,
           colorClass:
             tool.storageStatus === "เรียบร้อย"
-              ? "text-green-400"
+              ? "text-green-600 dark:text-green-400"
               : tool.storageStatus === "ของหาย"
                 ? "text-orange-accent"
-                : "text-red-400",
+                : "text-red-600 dark:text-red-400",
         },
       ]
     : [];
@@ -83,8 +83,8 @@ export default async function JudgeDetailPage({
             : "XCircle") as IconName,
           colorClass:
             vehicle.boomTopStatus === "สนิท"
-              ? "text-green-400"
-              : "text-red-400",
+              ? "text-green-600 dark:text-green-400"
+              : "text-red-600 dark:text-red-400",
           imageUrl: vehicle.boomTopImage,
         },
         {
@@ -95,8 +95,8 @@ export default async function JudgeDetailPage({
             : "XCircle") as IconName,
           colorClass:
             vehicle.boomBottomStatus === "สนิท"
-              ? "text-green-400"
-              : "text-red-400",
+              ? "text-green-600 dark:text-green-400"
+              : "text-red-600 dark:text-red-400",
           imageUrl: vehicle.boomBottomImage,
         },
         {
@@ -107,8 +107,8 @@ export default async function JudgeDetailPage({
             : "XCircle") as IconName,
           colorClass:
             vehicle.basketStatus === "สนิท"
-              ? "text-green-400"
-              : "text-red-400",
+              ? "text-green-600 dark:text-green-400"
+              : "text-red-600 dark:text-red-400",
           imageUrl: vehicle.basketImage,
         },
         {
@@ -118,7 +118,7 @@ export default async function JudgeDetailPage({
             ? "Lock"
             : "Unlock") as IconName,
           colorClass:
-            vehicle.lockStatus === "Lock" ? "text-green-400" : "text-red-400",
+            vehicle.lockStatus === "Lock" ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400",
           imageUrl: vehicle.lockImage,
         },
       ]

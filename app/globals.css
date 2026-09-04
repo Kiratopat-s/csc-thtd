@@ -16,6 +16,22 @@
   --text-muted: #a1a1aa;
 }
 
+[data-theme="light"] {
+  --background: #f8f8f8;
+  --foreground: #1a1a1a;
+  --purple-deep: #ede9fe;
+  --purple-medium: #7c3aed;
+  --purple-light: #6d28d9;
+  --purple-glow: #a78bfa;
+  --orange-accent: #f97316;
+  --orange-light: #ea580c;
+  --orange-glow: #fb923c;
+  --surface: #ffffff;
+  --surface-elevated: #f4f4f5;
+  --border-subtle: #e4e4e7;
+  --text-muted: #71717a;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -71,10 +87,19 @@ html[data-text-size="2xl"] {
 }
 
 /* Dark autofill styling */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
+html:not([data-theme="light"]) input:-webkit-autofill,
+html:not([data-theme="light"]) input:-webkit-autofill:hover,
+html:not([data-theme="light"]) input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 30px #1a1a1a inset !important;
   -webkit-text-fill-color: #ededed !important;
   caret-color: #ededed;
+}
+
+/* Light autofill styling */
+html[data-theme="light"] input:-webkit-autofill,
+html[data-theme="light"] input:-webkit-autofill:hover,
+html[data-theme="light"] input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+  -webkit-text-fill-color: #1a1a1a !important;
+  caret-color: #1a1a1a;
 }
