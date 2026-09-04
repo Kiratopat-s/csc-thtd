@@ -30,7 +30,7 @@
   --color-surface-elevated: var(--surface-elevated);
   --color-border-subtle: var(--border-subtle);
   --color-text-muted: var(--text-muted);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-noto-thai), var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 

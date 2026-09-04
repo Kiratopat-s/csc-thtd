@@ -19,7 +19,7 @@ const theme = createTheme({
   },
   shape: { borderRadius: 12 },
   typography: {
-    fontFamily: "var(--font-geist-sans), Arial, sans-serif",
+    fontFamily: "var(--font-noto-thai), var(--font-geist-sans), Arial, sans-serif",
   },
   components: {
     MuiTextField: {
