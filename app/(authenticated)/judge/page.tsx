@@ -6,6 +6,7 @@ import {
   getTeamNames,
 } from "@/lib/google-sheets";
 import DashboardTable from "@/components/judge/DashboardTable";
+import RefreshButton from "@/components/judge/RefreshButton";
 
 export default async function JudgeDashboard() {
   const user = await getAuthUser();
@@ -41,13 +42,16 @@ export default async function JudgeDashboard() {
 
   return (
     <main className="min-h-dvh px-4 sm:px-6 lg:px-8 py-8 max-w-7xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-foreground">
-          สรุปผลการตรวจสอบ
-        </h1>
-        <p className="text-sm text-text-muted mt-1">
-          ทั้งหมด {maxRows} รายการ
-        </p>
+      <div className="mb-8 flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">
+            สรุปผลการตรวจสอบ
+          </h1>
+          <p className="text-sm text-text-muted mt-1">
+            ทั้งหมด {maxRows} รายการ
+          </p>
+        </div>
+        <RefreshButton />
       </div>
 
       <DashboardTable records={records} />

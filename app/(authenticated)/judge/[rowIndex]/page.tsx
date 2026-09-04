@@ -10,6 +10,7 @@ import {
 import SheetSection from "@/components/judge/SheetSection";
 import type { IconName } from "@/components/judge/SheetSection";
 import EditableName from "@/components/judge/EditableName";
+import RefreshButton from "@/components/judge/RefreshButton";
 
 export default async function JudgeDetailPage({
   params,
@@ -126,13 +127,16 @@ export default async function JudgeDetailPage({
   return (
     <main className="min-h-dvh px-4 sm:px-6 lg:px-8 py-8 max-w-4xl mx-auto">
       <div className="mb-8">
-        <Link
-          href="/judge"
-          className="inline-flex items-center gap-1.5 text-sm text-text-muted hover:text-purple-light transition-colors mb-4"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          กลับหน้าสรุป
-        </Link>
+        <div className="flex items-center gap-3 mb-4">
+          <Link
+            href="/judge"
+            className="inline-flex items-center gap-1.5 text-sm text-text-muted hover:text-purple-light transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            กลับหน้าสรุป
+          </Link>
+          <RefreshButton />
+        </div>
 
         <div className="flex items-center gap-4 flex-wrap">
           <h1 className="text-2xl font-bold text-foreground">
