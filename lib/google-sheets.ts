@@ -87,6 +87,7 @@ export interface ToolRow {
   image: string;
   returnStatus: string; // ครบ | ไม่ครบ
   storageStatus: string; // เรียบร้อย | ไม่เรียบร้อย
+  missingItems: string; // free text, optional
 }
 
 export interface VehicleRow {
@@ -122,7 +123,7 @@ export async function getToolRows(): Promise<ToolRow[]> {
   const sheets = getSheetsClient();
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
-    range: "TOOL!A:D",
+    range: "TOOL!A:E",
   });
   const rows = res.data.values;
   if (!rows || rows.length < 2) return [];
@@ -131,6 +132,7 @@ export async function getToolRows(): Promise<ToolRow[]> {
     image: row[1]?.trim() ?? "",
     returnStatus: row[2]?.trim() ?? "",
     storageStatus: row[3]?.trim() ?? "",
+    missingItems: row[4]?.trim() ?? "",
   }));
 }
 

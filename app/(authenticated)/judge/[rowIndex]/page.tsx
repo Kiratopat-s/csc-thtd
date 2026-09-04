@@ -171,6 +171,11 @@ export default async function JudgeDetailPage({
             imageFields={[
               { label: "รูปจุดวางเครื่องมือ", urls: tool.image },
             ]}
+            notes={
+              tool.returnStatus === "ไม่ครบ" && tool.missingItems
+                ? [{ label: "ขาดอะไรบ้าง", value: tool.missingItems }]
+                : undefined
+            }
           />
         )}
 

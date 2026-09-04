@@ -47,6 +47,7 @@ interface SheetSectionProps {
   icon: IconName;
   fields: FieldConfig[];
   imageFields: { label: string; urls: string }[];
+  notes?: { label: string; value: string }[];
 }
 
 export default function SheetSection({
@@ -54,6 +55,7 @@ export default function SheetSection({
   icon,
   fields,
   imageFields,
+  notes,
 }: SheetSectionProps) {
   const SectionIcon = ICON_MAP[icon];
 
@@ -93,6 +95,19 @@ export default function SheetSection({
             <ImageGallery urls={img.urls} />
           </div>
         ))}
+
+        {notes?.map((n) =>
+          n.value ? (
+            <div key={n.label}>
+              <p className="text-xs text-text-muted mb-1.5 uppercase tracking-wide">
+                {n.label}
+              </p>
+              <p className="text-sm text-foreground whitespace-pre-wrap">
+                {n.value}
+              </p>
+            </div>
+          ) : null,
+        )}
       </div>
     </div>
   );
