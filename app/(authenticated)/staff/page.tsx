@@ -1,6 +1,3 @@
-import { getCurrentUser } from "@/lib/get-current-user";
-import { redirect } from "next/navigation";
-import LogoutButton from "@/components/LogoutButton";
 import FormCard from "@/components/staff/FormCard";
 import AuroraBackground from "@/components/backgrounds/AuroraBackground";
 
@@ -22,10 +19,7 @@ const forms = [
   },
 ];
 
-export default async function StaffDashboard() {
-  const user = await getCurrentUser();
-  if (!user || user.role !== "staff") redirect("/login");
-
+export default function StaffDashboard() {
   return (
     <main className="relative min-h-dvh overflow-hidden">
       {/* Aurora Background */}
@@ -37,16 +31,11 @@ export default async function StaffDashboard() {
       <div className="absolute inset-0 z-[1] bg-black/50" />
 
       {/* Content */}
-      <div className="relative z-[2] flex flex-col items-center min-h-dvh px-6 py-12">
-        {/* Header */}
-        <header className="flex flex-col items-center gap-3 mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-            การแข่งขันทักษะฝีมือช่าง 2569
-          </h1>
-          <p className="text-text-muted">
-            สวัสดี, {user.username}
-          </p>
-        </header>
+      <div className="relative z-[2] flex flex-col items-center min-h-dvh px-6 py-8">
+        {/* Title */}
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-12 mt-4">
+          การแข่งขันทักษะฝีมือช่าง 2569
+        </h1>
 
         {/* Form Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full mb-auto">
@@ -58,11 +47,6 @@ export default async function StaffDashboard() {
               href={form.href}
             />
           ))}
-        </div>
-
-        {/* Footer Logout */}
-        <div className="mt-12">
-          <LogoutButton />
         </div>
       </div>
     </main>
