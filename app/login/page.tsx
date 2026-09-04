@@ -24,12 +24,33 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // TODO: implement real auth logic
-    setTimeout(() => setIsLoading(false), 1500);
+    setError("");
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "เกิดข้อผิดพลาด");
+        setIsLoading(false);
+        return;
+      }
+
+      window.location.href = data.redirect;
+    } catch {
+      setError("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้");
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -151,6 +172,13 @@ export default function LoginPage() {
               },
             }}
           />
+
+          {/* Error */}
+          {error && (
+            <Typography variant="body2" sx={{ color: "error.main", textAlign: "center" }}>
+              {error}
+            </Typography>
+          )}
 
           {/* Submit */}
           <Button
