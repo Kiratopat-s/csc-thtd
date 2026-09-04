@@ -56,19 +56,26 @@ export default async function JudgeDetailPage({
   const toolFields = tool
     ? [
         {
+          label: "คืนเครื่องมือครบมั้ย",
+          value: tool.returnStatus,
+          icon: (tool.returnStatus === "ครบ"
+            ? "PackageCheck"
+            : "PackageX") as IconName,
+          colorClass:
+            tool.returnStatus === "ครบ"
+              ? "text-green-600 dark:text-green-400"
+              : "text-red-600 dark:text-red-400",
+        },
+        {
           label: "เก็บเข้าที่เดิมเรียบร้อยมั้ย",
           value: tool.storageStatus,
           icon: (tool.storageStatus === "เรียบร้อย"
             ? "CheckCircle"
-            : tool.storageStatus === "ของหาย"
-              ? "AlertTriangle"
-              : "XCircle") as IconName,
+            : "XCircle") as IconName,
           colorClass:
             tool.storageStatus === "เรียบร้อย"
               ? "text-green-600 dark:text-green-400"
-              : tool.storageStatus === "ของหาย"
-                ? "text-orange-accent"
-                : "text-red-600 dark:text-red-400",
+              : "text-red-600 dark:text-red-400",
         },
       ]
     : [];

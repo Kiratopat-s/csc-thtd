@@ -85,7 +85,8 @@ export interface TaskRow {
 export interface ToolRow {
   timestamp: string;
   image: string;
-  storageStatus: string; // เรียบร้อย | ไม่เรียบร้อย | ของหาย
+  returnStatus: string; // ครบ | ไม่ครบ
+  storageStatus: string; // เรียบร้อย | ไม่เรียบร้อย
 }
 
 export interface VehicleRow {
@@ -121,14 +122,15 @@ export async function getToolRows(): Promise<ToolRow[]> {
   const sheets = getSheetsClient();
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
-    range: "TOOL!A:C",
+    range: "TOOL!A:D",
   });
   const rows = res.data.values;
   if (!rows || rows.length < 2) return [];
   return rows.slice(1).map((row) => ({
     timestamp: row[0]?.trim() ?? "",
     image: row[1]?.trim() ?? "",
-    storageStatus: row[2]?.trim() ?? "",
+    returnStatus: row[2]?.trim() ?? "",
+    storageStatus: row[3]?.trim() ?? "",
   }));
 }
 

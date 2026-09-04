@@ -11,6 +11,8 @@ import {
   Truck,
   ClipboardCheck,
   Wrench,
+  PackageCheck,
+  PackageX,
   type LucideIcon,
 } from "lucide-react";
 import ImageGallery from "./ImageGallery";
@@ -26,6 +28,8 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Truck,
   ClipboardCheck,
   Wrench,
+  PackageCheck,
+  PackageX,
 };
 
 export type IconName = keyof typeof ICON_MAP;
