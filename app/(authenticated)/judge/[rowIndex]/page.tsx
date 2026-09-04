@@ -84,6 +84,7 @@ export default async function JudgeDetailPage({
             vehicle.boomTopStatus === "สนิท"
               ? "text-green-400"
               : "text-red-400",
+          imageUrl: vehicle.boomTopImage,
         },
         {
           label: "Boom ล่าง เก็บสนิทมั้ย",
@@ -95,6 +96,7 @@ export default async function JudgeDetailPage({
             vehicle.boomBottomStatus === "สนิท"
               ? "text-green-400"
               : "text-red-400",
+          imageUrl: vehicle.boomBottomImage,
         },
         {
           label: "ใบกระเช้า นั่งสนิทมั้ย",
@@ -106,6 +108,7 @@ export default async function JudgeDetailPage({
             vehicle.basketStatus === "สนิท"
               ? "text-green-400"
               : "text-red-400",
+          imageUrl: vehicle.basketImage,
         },
         {
           label: "Lock เครนกระเช้ามั้ย",
@@ -115,16 +118,8 @@ export default async function JudgeDetailPage({
             : "Unlock") as IconName,
           colorClass:
             vehicle.lockStatus === "Lock" ? "text-green-400" : "text-red-400",
+          imageUrl: vehicle.lockImage,
         },
-      ]
-    : [];
-
-  const vehicleImages = vehicle
-    ? [
-        { label: "รูป Boom บน", urls: vehicle.boomTopImage },
-        { label: "รูป Boom ล่าง", urls: vehicle.boomBottomImage },
-        { label: "รูป ใต้ใบกระเช้า", urls: vehicle.basketImage },
-        { label: "รูป Lock ใบกระเช้า", urls: vehicle.lockImage },
       ]
     : [];
 
@@ -173,7 +168,7 @@ export default async function JudgeDetailPage({
             title="ตรวจสอบสภาพรถ"
             icon="Truck"
             fields={vehicleFields}
-            imageFields={vehicleImages}
+            imageFields={[]}
           />
         )}
 

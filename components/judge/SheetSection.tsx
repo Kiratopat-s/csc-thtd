@@ -35,6 +35,7 @@ interface FieldConfig {
   value: string;
   icon: IconName;
   colorClass: string;
+  imageUrl?: string; // optional image shown beside the status
 }
 
 interface SheetSectionProps {
@@ -67,11 +68,14 @@ export default function SheetSection({
               <p className="text-xs text-text-muted mb-1.5 uppercase tracking-wide">
                 {f.label}
               </p>
-              <div className="flex items-center gap-2">
-                <FieldIcon className={`w-5 h-5 ${f.colorClass}`} />
-                <span className={`text-sm font-medium ${f.colorClass}`}>
-                  {f.value || "—"}
-                </span>
+              <div className="flex items-center gap-4">
+                {f.imageUrl && <ImageGallery urls={f.imageUrl} />}
+                <div className="flex items-center gap-2">
+                  <FieldIcon className={`w-5 h-5 ${f.colorClass}`} />
+                  <span className={`text-sm font-medium ${f.colorClass}`}>
+                    {f.value || "—"}
+                  </span>
+                </div>
               </div>
             </div>
           );
