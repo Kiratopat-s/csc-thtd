@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Sans_Thai_Looped } from "next/font/google";
 import ThemeProvider from "@/components/ThemeProvider";
+import { TextSizeProvider } from "@/lib/text-size-context";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -33,7 +34,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${notoThai.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <TextSizeProvider>{children}</TextSizeProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

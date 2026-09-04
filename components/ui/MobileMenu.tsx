@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import LogoutButton from "@/components/LogoutButton";
+import TextSizeToggle from "@/components/ui/TextSizeToggle";
 import type { NavLink } from "@/lib/nav-links";
 import type { AuthPayload } from "@/lib/auth";
 
@@ -119,6 +120,12 @@ export default function MobileMenu({
                 </Link>
               ))}
             </nav>
+
+            {/* Text size toggle */}
+            <div className="px-6 py-4 border-t border-border-subtle">
+              <p className="text-xs text-text-muted mb-2">ขนาดตัวอักษร</p>
+              <TextSizeToggle />
+            </div>
 
             {/* Logout at bottom */}
             <div className="p-6 border-t border-border-subtle">

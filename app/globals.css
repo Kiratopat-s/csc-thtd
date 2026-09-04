@@ -58,6 +58,18 @@ html {
   scroll-behavior: smooth;
 }
 
+html[data-text-size="l"] {
+  font-size: 18px;
+}
+
+html[data-text-size="xl"] {
+  font-size: 20px;
+}
+
+html[data-text-size="2xl"] {
+  font-size: 22px;
+}
+
 /* Dark autofill styling */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
