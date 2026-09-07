@@ -40,15 +40,28 @@ export default async function JudgeDetailPage({
   const taskFields = task
     ? [
         {
-          label: "จุดต่อแน่นมั้ย",
-          value: task.connectionStatus,
-          icon: (task.connectionStatus === "แน่น"
+          label: "เฟส B จุดต่อแน่นมั้ย",
+          value: task.phaseBConnectionStatus,
+          icon: (task.phaseBConnectionStatus === "แน่น"
             ? "ShieldCheck"
             : "ShieldAlert") as IconName,
           colorClass:
-            task.connectionStatus === "แน่น"
+            task.phaseBConnectionStatus === "แน่น"
               ? "text-green-600 dark:text-green-400"
               : "text-orange-accent",
+          imageUrl: task.phaseBImages,
+        },
+        {
+          label: "เฟส C จุดต่อแน่นมั้ย",
+          value: task.phaseCConnectionStatus,
+          icon: (task.phaseCConnectionStatus === "แน่น"
+            ? "ShieldCheck"
+            : "ShieldAlert") as IconName,
+          colorClass:
+            task.phaseCConnectionStatus === "แน่น"
+              ? "text-green-600 dark:text-green-400"
+              : "text-orange-accent",
+          imageUrl: task.phaseCImages,
         },
       ]
     : [];
@@ -76,6 +89,7 @@ export default async function JudgeDetailPage({
             tool.storageStatus === "เรียบร้อย"
               ? "text-green-600 dark:text-green-400"
               : "text-red-600 dark:text-red-400",
+          imageUrl: tool.image,
         },
         {
           label: "เก็บวัสดุใช้งานเรียบร้อยมั้ย",
@@ -170,10 +184,7 @@ export default async function JudgeDetailPage({
             title="ตรวจสอบสภาพงาน"
             icon="ClipboardCheck"
             fields={taskFields}
-            imageFields={[
-              { label: "เฟส B รูปงาน 6 มุม", urls: task.phaseBImages },
-              { label: "เฟส C รูปงาน 6 มุม", urls: task.phaseCImages },
-            ]}
+            imageFields={[]}
           />
         )}
 
@@ -183,7 +194,6 @@ export default async function JudgeDetailPage({
             icon="Wrench"
             fields={toolFields}
             imageFields={[
-              { label: "รูปจุดวางเครื่องมือ", urls: tool.image },
               { label: "รูปความเรียบร้อยการเก็บวัสดุใช้งาน", urls: tool.materialStorageImage },
             ]}
             notes={

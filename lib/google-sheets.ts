@@ -79,8 +79,9 @@ export async function appendLog(entry: LogEntry): Promise<void> {
 export interface TaskRow {
   timestamp: string;
   phaseBImages: string; // เฟส B รูปงาน 6 มุม
+  phaseBConnectionStatus: string; // แน่น | ไม่แน่น
   phaseCImages: string; // เฟส C รูปงาน 6 มุม
-  connectionStatus: string; // แน่น | ไม่แน่น
+  phaseCConnectionStatus: string; // แน่น | ไม่แน่น
 }
 
 export interface ToolRow {
@@ -111,15 +112,16 @@ export async function getTaskRows(): Promise<TaskRow[]> {
   const sheets = getSheetsClient();
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
-    range: "TASK!A:D",
+    range: "TASK!A:E",
   });
   const rows = res.data.values;
   if (!rows || rows.length < 2) return [];
   return rows.slice(1).map((row) => ({
     timestamp: row[0]?.trim() ?? "",
     phaseBImages: row[1]?.trim() ?? "",
-    connectionStatus: row[2]?.trim() ?? "",
+    phaseBConnectionStatus: row[2]?.trim() ?? "",
     phaseCImages: row[3]?.trim() ?? "",
+    phaseCConnectionStatus: row[4]?.trim() ?? "",
   }));
 }
 
