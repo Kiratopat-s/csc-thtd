@@ -77,6 +77,17 @@ export default async function JudgeDetailPage({
               ? "text-green-600 dark:text-green-400"
               : "text-red-600 dark:text-red-400",
         },
+        {
+          label: "เก็บวัสดุใช้งานเรียบร้อยมั้ย",
+          value: tool.materialStorageStatus,
+          icon: (tool.materialStorageStatus === "เรียบร้อย"
+            ? "CheckCircle"
+            : "XCircle") as IconName,
+          colorClass:
+            tool.materialStorageStatus === "เรียบร้อย"
+              ? "text-green-600 dark:text-green-400"
+              : "text-red-600 dark:text-red-400",
+        },
       ]
     : [];
 
@@ -159,7 +170,10 @@ export default async function JudgeDetailPage({
             title="ตรวจสอบสภาพงาน"
             icon="ClipboardCheck"
             fields={taskFields}
-            imageFields={[{ label: "รูปงาน 6 มุม", urls: task.images }]}
+            imageFields={[
+              { label: "เฟส B รูปงาน 6 มุม", urls: task.phaseBImages },
+              { label: "เฟส C รูปงาน 6 มุม", urls: task.phaseCImages },
+            ]}
           />
         )}
 
@@ -170,6 +184,7 @@ export default async function JudgeDetailPage({
             fields={toolFields}
             imageFields={[
               { label: "รูปจุดวางเครื่องมือ", urls: tool.image },
+              { label: "รูปความเรียบร้อยการเก็บวัสดุใช้งาน", urls: tool.materialStorageImage },
             ]}
             notes={
               tool.returnStatus === "ไม่ครบ" && tool.missingItems

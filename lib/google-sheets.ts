@@ -78,7 +78,8 @@ export async function appendLog(entry: LogEntry): Promise<void> {
 
 export interface TaskRow {
   timestamp: string;
-  images: string; // comma-separated Drive URLs
+  phaseBImages: string; // เฟส B รูปงาน 6 มุม
+  phaseCImages: string; // เฟส C รูปงาน 6 มุม
   connectionStatus: string; // แน่น | ไม่แน่น
 }
 
@@ -86,8 +87,10 @@ export interface ToolRow {
   timestamp: string;
   image: string;
   returnStatus: string; // ครบ | ไม่ครบ
-  storageStatus: string; // เรียบร้อย | ไม่เรียบร้อย
   missingItems: string; // free text, optional
+  storageStatus: string; // เรียบร้อย | ไม่เรียบร้อย
+  materialStorageImage: string; // รูปความเรียบร้อยการเก็บวัสดุใช้งาน
+  materialStorageStatus: string; // เรียบร้อย | ไม่เรียบร้อย
 }
 
 export interface VehicleRow {
@@ -108,14 +111,15 @@ export async function getTaskRows(): Promise<TaskRow[]> {
   const sheets = getSheetsClient();
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
-    range: "TASK!A:C",
+    range: "TASK!A:D",
   });
   const rows = res.data.values;
   if (!rows || rows.length < 2) return [];
   return rows.slice(1).map((row) => ({
     timestamp: row[0]?.trim() ?? "",
-    images: row[1]?.trim() ?? "",
-    connectionStatus: row[2]?.trim() ?? "",
+    phaseBImages: row[1]?.trim() ?? "",
+    phaseCImages: row[2]?.trim() ?? "",
+    connectionStatus: row[3]?.trim() ?? "",
   }));
 }
 
@@ -123,7 +127,7 @@ export async function getToolRows(): Promise<ToolRow[]> {
   const sheets = getSheetsClient();
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
-    range: "TOOL!A:E",
+    range: "TOOL!A:G",
   });
   const rows = res.data.values;
   if (!rows || rows.length < 2) return [];
@@ -131,8 +135,10 @@ export async function getToolRows(): Promise<ToolRow[]> {
     timestamp: row[0]?.trim() ?? "",
     image: row[1]?.trim() ?? "",
     returnStatus: row[2]?.trim() ?? "",
-    storageStatus: row[3]?.trim() ?? "",
-    missingItems: row[4]?.trim() ?? "",
+    missingItems: row[3]?.trim() ?? "",
+    storageStatus: row[4]?.trim() ?? "",
+    materialStorageImage: row[5]?.trim() ?? "",
+    materialStorageStatus: row[6]?.trim() ?? "",
   }));
 }
 
