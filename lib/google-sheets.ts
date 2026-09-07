@@ -116,13 +116,17 @@ export async function getTaskRows(): Promise<TaskRow[]> {
   });
   const rows = res.data.values;
   if (!rows || rows.length < 2) return [];
-  return rows.slice(1).map((row) => ({
-    timestamp: row[0]?.trim() ?? "",
-    phaseBImages: row[1]?.trim() ?? "",
-    phaseBConnectionStatus: row[2]?.trim() ?? "",
-    phaseCImages: row[3]?.trim() ?? "",
-    phaseCConnectionStatus: row[4]?.trim() ?? "",
-  }));
+  return rows.slice(1).map((raw) => {
+    const row = [...raw];
+    while (row.length < 5) row.push(undefined);
+    return {
+      timestamp: row[0]?.trim() ?? "",
+      phaseBImages: row[1]?.trim() ?? "",
+      phaseBConnectionStatus: row[2]?.trim() ?? "",
+      phaseCImages: row[3]?.trim() ?? "",
+      phaseCConnectionStatus: row[4]?.trim() ?? "",
+    };
+  });
 }
 
 export async function getToolRows(): Promise<ToolRow[]> {
@@ -133,15 +137,19 @@ export async function getToolRows(): Promise<ToolRow[]> {
   });
   const rows = res.data.values;
   if (!rows || rows.length < 2) return [];
-  return rows.slice(1).map((row) => ({
-    timestamp: row[0]?.trim() ?? "",
-    image: row[1]?.trim() ?? "",
-    returnStatus: row[2]?.trim() ?? "",
-    storageStatus: row[3]?.trim() ?? "",
-    missingItems: row[4]?.trim() ?? "",
-    materialStorageStatus: row[5]?.trim() ?? "",
-    materialStorageImage: row[6]?.trim() ?? "",
-  }));
+  return rows.slice(1).map((raw) => {
+    const row = [...raw];
+    while (row.length < 7) row.push(undefined);
+    return {
+      timestamp: row[0]?.trim() ?? "",
+      image: row[1]?.trim() ?? "",
+      returnStatus: row[2]?.trim() ?? "",
+      storageStatus: row[3]?.trim() ?? "",
+      missingItems: row[4]?.trim() ?? "",
+      materialStorageStatus: row[5]?.trim() ?? "",
+      materialStorageImage: row[6]?.trim() ?? "",
+    };
+  });
 }
 
 export async function getVehicleRows(): Promise<VehicleRow[]> {
