@@ -50,6 +50,7 @@ export default async function JudgeDetailPage({
               ? "text-green-600 dark:text-green-400"
               : "text-orange-accent",
           imageUrl: task.phaseBImages,
+          imageLayout: "stacked" as const,
         },
         {
           label: "เฟส C จุดต่อแน่นมั้ย",
@@ -62,6 +63,7 @@ export default async function JudgeDetailPage({
               ? "text-green-600 dark:text-green-400"
               : "text-orange-accent",
           imageUrl: task.phaseCImages,
+          imageLayout: "stacked" as const,
         },
       ]
     : [];
@@ -90,6 +92,7 @@ export default async function JudgeDetailPage({
               ? "text-green-600 dark:text-green-400"
               : "text-red-600 dark:text-red-400",
           imageUrl: tool.image,
+          imageLayout: "stacked" as const,
         },
         {
           label: "เก็บวัสดุใช้งานเรียบร้อยมั้ย",
@@ -101,6 +104,8 @@ export default async function JudgeDetailPage({
             tool.materialStorageStatus === "เรียบร้อย"
               ? "text-green-600 dark:text-green-400"
               : "text-red-600 dark:text-red-400",
+          imageUrl: tool.materialStorageImage,
+          imageLayout: "stacked" as const,
         },
       ]
     : [];
@@ -193,9 +198,7 @@ export default async function JudgeDetailPage({
             title="ตรวจสอบเครื่องมือ"
             icon="Wrench"
             fields={toolFields}
-            imageFields={[
-              { label: "รูปความเรียบร้อยการเก็บวัสดุใช้งาน", urls: tool.materialStorageImage },
-            ]}
+            imageFields={[]}
             notes={
               tool.returnStatus === "ไม่ครบ" && tool.missingItems
                 ? [{ label: "ขาดอะไรบ้าง", value: tool.missingItems }]

@@ -39,7 +39,8 @@ interface FieldConfig {
   value: string;
   icon: IconName;
   colorClass: string;
-  imageUrl?: string; // optional image shown beside the status
+  imageUrl?: string;
+  imageLayout?: "inline" | "stacked"; // default "inline"
 }
 
 interface SheetSectionProps {
@@ -69,20 +70,33 @@ export default function SheetSection({
       <div className="p-6 space-y-6">
         {fields.map((f) => {
           const FieldIcon = ICON_MAP[f.icon];
+          const stacked = f.imageLayout === "stacked";
           return (
             <div key={f.label}>
               <p className="text-xs text-text-muted mb-1.5 uppercase tracking-wide">
                 {f.label}
               </p>
-              <div className="flex items-center gap-4">
-                {f.imageUrl && <ImageGallery urls={f.imageUrl} />}
-                <div className="flex items-center gap-2">
-                  <FieldIcon className={`w-5 h-5 ${f.colorClass}`} />
-                  <span className={`text-sm font-medium ${f.colorClass}`}>
-                    {f.value || "—"}
-                  </span>
+              {stacked ? (
+                <div className="space-y-2">
+                  {f.imageUrl && <ImageGallery urls={f.imageUrl} />}
+                  <div className="flex items-center gap-2">
+                    <FieldIcon className={`w-5 h-5 ${f.colorClass}`} />
+                    <span className={`text-sm font-medium ${f.colorClass}`}>
+                      {f.value || "—"}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="flex items-center gap-4">
+                  {f.imageUrl && <ImageGallery urls={f.imageUrl} />}
+                  <div className="flex items-center gap-2">
+                    <FieldIcon className={`w-5 h-5 ${f.colorClass}`} />
+                    <span className={`text-sm font-medium ${f.colorClass}`}>
+                      {f.value || "—"}
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}
