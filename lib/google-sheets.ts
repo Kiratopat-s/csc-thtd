@@ -118,8 +118,8 @@ export async function getTaskRows(): Promise<TaskRow[]> {
   return rows.slice(1).map((row) => ({
     timestamp: row[0]?.trim() ?? "",
     phaseBImages: row[1]?.trim() ?? "",
-    phaseCImages: row[2]?.trim() ?? "",
-    connectionStatus: row[3]?.trim() ?? "",
+    connectionStatus: row[2]?.trim() ?? "",
+    phaseCImages: row[3]?.trim() ?? "",
   }));
 }
 
@@ -135,10 +135,10 @@ export async function getToolRows(): Promise<ToolRow[]> {
     timestamp: row[0]?.trim() ?? "",
     image: row[1]?.trim() ?? "",
     returnStatus: row[2]?.trim() ?? "",
-    missingItems: row[3]?.trim() ?? "",
-    storageStatus: row[4]?.trim() ?? "",
-    materialStorageImage: row[5]?.trim() ?? "",
-    materialStorageStatus: row[6]?.trim() ?? "",
+    storageStatus: row[3]?.trim() ?? "",
+    missingItems: row[4]?.trim() ?? "",
+    materialStorageStatus: row[5]?.trim() ?? "",
+    materialStorageImage: row[6]?.trim() ?? "",
   }));
 }
 
