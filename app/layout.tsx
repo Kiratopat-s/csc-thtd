@@ -24,7 +24,7 @@ const notoThai = Noto_Sans_Thai_Looped({
 export const metadata: Metadata = {
   title: "การแข่งขันทักษะฝีมือช่าง 2569 | การไฟฟ้าส่วนภูมิภาค",
   description:
-    "การแข่งขันทักษะฝีมือช่าง ประจำปี 2569 โดย ฝ่ายช่างฝึกและอบรมสาย การไฟฟ้าส่วนภูมิภาค (กฟภ.)",
+    "การแข่งขันทักษะฝีมือช่าง ประจำปี 2569 โดยกองฝึกอบรมช่างและฮอทไลน์ การไฟฟ้าส่วนภูมิภาค (กฟภ.)",
 };
 
 const themeInitScript = `(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);document.documentElement.classList.add(t==='light'?'light':'dark');document.documentElement.classList.remove(t==='light'?'dark':'light')}catch(e){}})()`;
